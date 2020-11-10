@@ -63,10 +63,33 @@ $superheroes = [
   ], 
 ];
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+    $line = '';
+    $line .= "<ul>";
+    foreach ($superheroes as $superhero):
+        $line .= "<li>{$superhero['alias']}</li>";
+    endforeach;
+    $line .= "</ul>";
+    echo $line;
+}elseif ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    //print("I am here");
+    $msg = json_decode(file_get_contents('php://input'), true);
+    $formdata = filter_var($msg, FILTER_SANITIZE_STRING);
+    $checking = true;
+    foreach ($superheroes as $superhero):
+        if(strtolower($formdata) == strtolower($superhero['name']) || strtolower($formdata) == strtolower($superhero['alias'])){
+            $data = $superhero;
+            $checking = false;
+            break;
+        }
+    endforeach;
+    if (!$checking){
+        echo json_encode($data);
+    }else{
+        echo "Hero Not Found";
+    }
+    
+}
+
 ?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>

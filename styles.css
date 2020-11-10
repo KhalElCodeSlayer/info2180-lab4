@@ -1,0 +1,40 @@
+header{
+    color: white;
+    background-color:red;
+    padding: 15px;
+    text-align: center;
+}
+body {
+    margin: 0;
+    font-size: 16px;
+    background-color:grey;
+}
+ 
+
+button {
+    background-color:blue;
+    color: #ffffff;
+    padding: 10px;
+    margin-left: 15px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+    height: 45px;
+    
+    
+}
+form{
+    display: inline;
+    flex-direction: row;
+}
+
+input{
+    width: 280px;
+    padding:15px;
+    justify-content: space-around;
+    color: black;
+}
+.herolist{
+    font-size: 18px;
+
+}
